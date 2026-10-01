@@ -228,16 +228,35 @@ Classificação inicial:
 
 ## 8.2 Chuva extrema / enchente
 
-Indicadores:
+O FireWatch possui um **módulo dedicado de enchentes e alagamentos**, onde o usuário pode identificar exatamente **onde a enchente está acontecendo em tempo real** e **onde pode ocorrer nas próximas horas** com base nas condições climáticas.
 
-- precipitação prevista;
-- precipitação acumulada;
-- intensidade da chuva;
-- duração do evento;
-- histórico de enchentes;
-- proximidade de rios;
-- características geográficas;
-- áreas vulneráveis.
+### 📍 Localização por Granularidade Fina:
+- **Região**: Estado ou Bacia Hidrográfica (ex: Região Metropolitana de SP, Vale do Itajaí/SC, Bacia do Guaíba/RS, Região Serrana/RJ).
+- **Cidade**: Município monitorado (ex: São Paulo, Blumenau, Porto Alegre, Franco da Rocha, Petrópolis).
+- **Bairro / Ponto Crítico**: Bairro específico ou micro-região afetada (ex: Vila Prudente, Sarandi, Itoupava Norte, Alto da Serra).
+
+### 🔍 Duas Frentes de Identificação:
+
+1. **Onde ESTÁ tendo enchente/alagamento (Ocorrências Ativas em Tempo Real)**:
+   - Identificação imediata de vias alagadas, rios/córregos transbordados e áreas de várzea inundadas.
+   - Status dos pontos: 🔴 *Enchente / Alagamento Ativo* (Água acima da cota de emergência, vias interditadas).
+
+2. **Onde PODE OCORRER enchente (Previsão e Modelagem de Risco Climático)**:
+   - Estimativa antecipada baseada em dados meteorológicos e topográficos antes que o transbordamento aconteça.
+   - Cruzamento de variáveis climáticas:
+     - **Precipitação acumulada**: chuva registrada nas últimas 24h e 72h.
+     - **Previsão de chuva torrencial**: volume em mm nas próximas 3h a 12h (frentes frias, tempestades convectivas).
+     - **Cota de rios e córregos**: monitoramento do nível do rio em relação à cota de emergência.
+     - **Saturação do solo (%)**: capacidade de absorção do solo encharcado.
+     - **Drenagem e relevo local**: áreas de várzea, fundo de vale e microbacias urbanas.
+
+### Status e Alertas de Enchente para o Usuário:
+```text
+🔴 Enchente / Alagamento Ativo   → Transbordamento confirmado / Vias cobertas por água
+🟠 Alerta Vermelho (Risco Iminente) → Chuva extrema prevista + Solo 90%+ saturado
+🟡 Risco Moderado de Alagamento  → Acúmulo significativo com atenção a pontos céticos
+🟢 Situação Normal               → Fluxo pluvial normalizado
+```
 
 ## 8.3 Incêndio
 
@@ -606,7 +625,33 @@ O objetivo é que o alerta seja **relevante para quem recebe**.
 
 # 16. Interface
 
-A interface principal será um mapa interativo.
+A interface principal possui navegação simplificada por módulos temáticos (Incêndios, Enchentes e Calor Extremo), permitindo ao usuário alternar entre o mapa global de queimadas e a visualização detalhada de riscos climáticos.
+
+## 🌊 Módulo Dedicado de Enchentes & Alagamentos
+
+Nesta aba dedicada, o usuário conta com um sistema de **busca e filtro por Região, Cidade e Bairro**:
+
+```text
+🔍 FILTROS DE CONSULTA:
+[ Selecionar Região ▾ ]  [ Selecionar Cidade ▾ ]  [ Pesquisar Bairro / Rua... ]
+
+Status exibido ao selecionar o Bairro:
+────────────────────────────────────────────────────────
+📍 BAIRRO / LOCALIDADE: Vila Prudente (Córrego da Mooca) - São Paulo/SP
+STATUS: 🔴 ALAGAMENTO ATIVO (Transbordamento de Córrego)
+
+📊 DADOS CLIMÁTICOS & HIDROLÓGICOS DA LOCALIDADE:
+• Chuva Acumulada (24h):  112 mm
+• Previsão (Próx. 6h):    45 mm (Tempestade Convectiva)
+• Nível do Córrego:       4.8 m (Cota de Emergência: 4.2 m - Transbordado)
+• Saturação do Solo:      98% (Capacidade máxima atingida)
+
+⚠️ ALERTA LOCAL: Vias intransitáveis na Av. Anhaia Mello.
+🛡️ RECOMENDAÇÃO: Evitar deslocamento pela baixada e buscar vias elevadas.
+────────────────────────────────────────────────────────
+```
+
+### Painel Geral do Mapa Interativo:
 
 ```text
 🟢 Baixo
@@ -618,30 +663,31 @@ A interface principal será um mapa interativo.
 Ao selecionar uma região:
 
 ```text
-REGIÃO
+REGIÃO / LOCALIDADE
 ───────────────
 
-☀️ Calor
+☀️ Calor Extremo
 82/100
 
-🌧️ Chuva
-61/100
+🌧️ Enchente / Alagamento
+95/100 (🔴 Ativo)
 
 🔥 Incêndio
 91/100
 
-IMPACTO
+IMPACTO POTENCIAL
 84/100
 
 ───────────────
 
 PRINCIPAIS FATORES
 
-Temperatura: 39°C
-Umidade: 21%
-Chuva: 2 mm
-Dias sem chuva: 14
+Chuva 24h: 112 mm
+Previsão: 45 mm
+Nível do Rio: 4.8 m (Transbordado)
+Solo: 98% saturado
 Focos: 1
+
 
 ───────────────
 
